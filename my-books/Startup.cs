@@ -62,6 +62,9 @@ namespace my_books
             {
                 endpoints.MapControllers();
             });
+
+            // Adding initializer method to have predefined data in the database
+            AppDbInitializer.Seed(app);
         }
     }
 }
