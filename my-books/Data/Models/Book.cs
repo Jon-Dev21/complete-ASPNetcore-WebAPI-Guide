@@ -17,5 +17,13 @@ namespace my_books.Data.Models
         public string Author { get; set; }
         public string CoverURL { get; set; }
         public DateTime DateAdded { get; set; }
+
+        // Navigation Properties
+        // Foreign Key, publisher Id (This is a One to many relationship)
+        public int PublisherId { get; set; }
+
+        public Publisher Publisher { get; set; }
+
+        public List<Book_Author> Book_Authors { get; set; }
     }
 }

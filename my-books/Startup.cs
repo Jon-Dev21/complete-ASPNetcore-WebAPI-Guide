@@ -34,10 +34,11 @@ namespace my_books
         {
 
             services.AddControllers();
+
             // Configure DBContext with SQL
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
             
-            // Configuring BooksService
+            // Configuring BooksService. This method adds a service to the service collection
             services.AddTransient<BooksService>();
 
             services.AddSwaggerGen(c =>
