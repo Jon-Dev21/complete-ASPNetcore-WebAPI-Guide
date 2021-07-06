@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace my_books.Data.Models.ViewModels
 {
-    public class AuthorVM
+    public class PublisherVM
     {
         // Author Full Name
-        public string FullName { get; set; }
+        public string Name { get; set; }
     }
 }
