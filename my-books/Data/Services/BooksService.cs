@@ -78,15 +78,16 @@ namespace my_books.Data.Services
             // IF the book exists, update it.
             if(_book != null)
             {
-                _book.Title = book.Title;
-                _book.Description = book.Description;
+                // added ternary condition to not update table if the update value is null
+                _book.Title = book.Title!= null ? book.Title : _book.Title;
+                _book.Description = book.Description!= null ? book.Description: _book.Description;
                 _book.IsRead = book.IsRead;
                 _book.DateRead = book.IsRead ? book.DateRead.Value : null;
                 _book.Rate = book.IsRead ? book.Rate.Value : null;
-                _book.Genre = book.Genre;
+                _book.Genre = book.Genre != null ? book.Genre : _book.Genre;
                 //_book.Author = book.Author;
-                _book.CoverURL = book.CoverURL;
-
+                _book.CoverURL = book.CoverURL != null ? book.CoverURL : _book.CoverURL;
+                _book.PublisherId = book.PublisherId;
                 _context.SaveChanges();
             };
             return _book;
