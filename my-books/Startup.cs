@@ -41,6 +41,12 @@ namespace my_books
             // Configuring BooksService. This method adds a service to the service collection
             services.AddTransient<BooksService>();
 
+            // Adding Authors Service
+            services.AddTransient<AuthorsService>();
+
+            // Adding Publishers Service
+            services.AddTransient<PublishersService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v2", new OpenApiInfo { Title = "my_books_updated_title", Version = "v2" });
@@ -68,8 +74,8 @@ namespace my_books
                 endpoints.MapControllers();
             });
 
-            // Adding initializer method to have predefined data in the database
-            AppDbInitializer.Seed(app);
+            // Adding initializer method used to add predefined data (books) in the database
+            //AppDbInitializer.Seed(app);
         }
     }
 }
