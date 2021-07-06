@@ -15,7 +15,11 @@ namespace my_books.Data.Models.ViewModels
         public DateTime? DateRead { get; set; }
         public int? Rate { get; set; }
         public string Genre { get; set; }
-        public string Author { get; set; }
+        //public string Author { get; set; }
         public string CoverURL { get; set; }
+
+        // Updating database schema with Publisher and Author IDs
+        public int PublisherId { get; set; }
+        public List<int> AuthorIds { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace my_books.Data
                         DateRead = DateTime.Now.AddDays(-10),
                         Rate = 5,
                         Genre = "High Fantasy",
-                        Author = "J.R.R. Tolkien",
+                        //Author = "J.R.R. Tolkien",
                         CoverURL = "https://images-na.ssl-images-amazon.com/images/I/91jBdaRVqML.jpg",
                         DateAdded = DateTime.Now
                     }, new Book()
@@ -39,7 +39,7 @@ namespace my_books.Data
                         DateRead = DateTime.Now.AddDays(-9),
                         Rate = 5,
                         Genre = "High Fantasy",
-                        Author = "J.R.R. Tolkien",
+                        //Author = "J.R.R. Tolkien",
                         CoverURL = "https://images-na.ssl-images-amazon.com/images/I/31hpHUdg3OL._SX310_BO1,204,203,200_.jpg",
                         DateAdded = DateTime.Now
                     }, new Book()
@@ -50,7 +50,7 @@ namespace my_books.Data
                         DateRead = DateTime.Now.AddDays(-8),
                         Rate = 5,
                         Genre = "High Fantasy",
-                        Author = "J.R.R. Tolkien",
+                        //Author = "J.R.R. Tolkien",
                         CoverURL = "https://i.harperapps.com/covers/9780261103597/y648.jpg",
                         DateAdded = DateTime.Now
                     });

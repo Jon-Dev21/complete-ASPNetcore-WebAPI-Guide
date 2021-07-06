@@ -40,10 +40,10 @@ namespace my_books.Controllers
 
         // Creating Post endpoint
         // For custom endpoint, add route between parenthesis
-        [HttpPost("add-book")]
+        [HttpPost("add-book-with-authors")]
         public IActionResult Addbook([FromBody] BookVM book)
         {
-            _booksService.AddBook(book);
+            _booksService.AddBookWithAuthors(book);
             return Ok();
         }
 
