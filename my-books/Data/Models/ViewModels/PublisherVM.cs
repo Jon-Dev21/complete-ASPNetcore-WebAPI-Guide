@@ -10,4 +10,19 @@ namespace my_books.Data.Models.ViewModels
         // Author Full Name
         public string Name { get; set; }
     }
+
+    // For an Id provided, we'll get all the books that this publisher has published as well as a list of authors
+    // For each book, we get the book authors
+    public class PublisherWithBooksAndAuthorsVM
+    {
+        public string Name { get; set; }
+        public List<BookAuthorVM> BookAuthors { get; set; }
+    }
+
+    // Has two properties, bookName and List of Authors
+    public class BookAuthorVM
+    {
+        public string BookName { get; set; }
+        public List<string> BookAuthors { get; set; }
+    }
 }
