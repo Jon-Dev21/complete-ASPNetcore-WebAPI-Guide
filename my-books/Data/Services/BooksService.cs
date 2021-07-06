@@ -30,13 +30,13 @@ namespace my_books.Data.Services
                 Genre = book.Genre,
                 CoverURL = book.CoverURL,
                 DateAdded = DateTime.Now,
-                PublisherId = book.PublisherId        
+                PublisherId = book.PublisherId
             };
             _context.Books.Add(_book);
             _context.SaveChanges();
 
             // Assigning Author Ids to To the Books_Authors Object
-            foreach(var id in book.AuthorIds)
+            foreach (var id in book.AuthorIds)
             {
                 var _book_author = new Book_Author()
                 {
@@ -51,9 +51,25 @@ namespace my_books.Data.Services
 
         // Returns all books from the database
         public List<Book> GetAllBooks() => _context.Books.ToList();
-    
+
         // Returns a single book using specified ID
-        public Book GetBookById(int bookId) => _context.Books.FirstOrDefault(n => n.Id == bookId);
+        public BookWithAuthorsVM GetBookById(int bookId) {
+            // Old line of code: public Book GetBookById(int bookId) => _context.Books.FirstOrDefault(n => n.Id == bookId);
+            // Updating method to get the book with authors.
+            var _bookWithAuthors = _context.Books.Where(n => n.Id == bookId).Select(book => new BookWithAuthorsVM()
+            {
+                Title = book.Title,
+                Description = book.Description,
+                IsRead = book.IsRead,
+                DateRead = book.IsRead ? book.DateRead.Value : null,
+                Rate = book.IsRead ? book.Rate.Value : null,
+                Genre = book.Genre,
+                CoverURL = book.CoverURL,
+                PublisherName = book.Publisher.Name,
+                AuthorNames = book.Book_Authors.Select(n => n.Author.FullName).ToList()
+            }).FirstOrDefault();
+            return _bookWithAuthors;
+        }
 
         // Updates book using specified ID
         public Book UpdateBookById(int bookId, BookVM book)
