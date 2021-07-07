@@ -1,5 +1,6 @@
 ﻿using my_books.Data.Models;
 using my_books.Data.Models.ViewModels;
+using my_books.Data.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace my_books.Data.Services
 
         // Method to get all publishers in the database
         // Before adding sort parameter: public List<Publisher> GetAllPublishers() => _context.Publishers.ToList();
-        public List<Publisher> GetAllPublishers(string sortBy, string searchString)
+        public List<Publisher> GetAllPublishers(string sortBy, string searchString, int? pageNumber)
         {
             // Sort ascending by default
             var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
@@ -40,6 +41,11 @@ namespace my_books.Data.Services
             {// StringComparison.CurrentCultureIgnoreCase is used to ignore lower & uppercase
                 allPublishers = allPublishers.Where(n => n.Name.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
             }
+
+            // Paging
+            int pageSize = 5;  // Will display 5 results per page.
+            allPublishers = PaginatedList<Publisher>.Create(allPublishers.AsQueryable(), pageNumber ?? 1, pageSize);
+
             return allPublishers;
         }
 

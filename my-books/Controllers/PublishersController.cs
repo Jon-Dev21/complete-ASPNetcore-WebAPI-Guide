@@ -60,12 +60,12 @@ namespace my_books.Controllers
         // Http Get request endpoint
         // Gets all publishers
         [HttpGet("get-all-publishers")]
-        public IActionResult GetAllPublishers(string sortBy, string searchString)
+        public IActionResult GetAllPublishers(string sortBy, string searchString, int pageNumber)
         {
             // If sortBy = "name_desc", the publishers will return in descending order by name
             try
             {
-                var _result = _publishersService.GetAllPublishers(sortBy, searchString);
+                var _result = _publishersService.GetAllPublishers(sortBy, searchString, pageNumber);
                 return Ok(_result);
             } catch
             {
