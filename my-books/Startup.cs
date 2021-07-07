@@ -47,6 +47,10 @@ namespace my_books
             // Adding Publishers Service
             services.AddTransient<PublishersService>();
 
+            // Adding AspNetCore MVC Versioning package
+            // This method is used for API versioning
+            services.AddApiVersioning();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v2", new OpenApiInfo { Title = "my_books_updated_title", Version = "v2" });

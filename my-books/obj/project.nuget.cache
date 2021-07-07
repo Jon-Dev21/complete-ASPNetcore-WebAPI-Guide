@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "A4Wj9ulkFyEOG+//ykw/p9s/6XUiGeo3xjA5KTaZ6ShZr9MWehViUpN7cXbv64coS7Cx5DYEE1cG9UZFpxn2Bg==",
+  "dgSpecHash": "QVnLihC5jnv4QruJHjvIYdFNi7EI11sDMsYFUsaX4RwfimNnASmhnhvTQR0gcjgMf5E+URW3KObEiq9XSSsyyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Calculo\\Desktop\\myCareer\\Udemy Lessons\\The Complete Guide to .NET Core Web API\\my-books\\my-books\\my-books.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Calculo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Calculo\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "C:\\Users\\Calculo\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Calculo\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\Calculo\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
