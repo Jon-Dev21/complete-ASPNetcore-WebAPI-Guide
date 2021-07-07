@@ -57,7 +57,10 @@ namespace my_books
                 config.AssumeDefaultVersionWhenUnspecified = true;
 
                 // For Http-Header Based Versioning
-                config.ApiVersionReader = new HeaderApiVersionReader("custom-version-header");
+                // config.ApiVersionReader = new HeaderApiVersionReader("custom-version-header");
+
+                // For Http Media type-based API versioning
+                config.ApiVersionReader = new MediaTypeApiVersionReader();
             });
 
             services.AddSwaggerGen(c =>
