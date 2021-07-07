@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace my_books.Controllers.v2
 {
+    // [Route("api/[controller]")] Query string based route
     [ApiVersion("2.0")]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")] // For URL Based versioning, just change the API route
     [ApiController]
     public class TestController : ControllerBase
     {
