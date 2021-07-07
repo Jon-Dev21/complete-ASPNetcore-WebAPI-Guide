@@ -16,6 +16,9 @@ namespace my_books.Data.Services
             _context = context;
         }
 
+        // Method to get all publishers in the database
+        public List<Publisher> GetAllPublishers() => _context.Publishers.ToList();
+
         // Method to add data to the database
         public void AddPublisher(PublisherVM publisher)
         {
@@ -25,6 +28,18 @@ namespace my_books.Data.Services
             };
             _context.Publishers.Add(_publisher);
             _context.SaveChanges();
+        }
+
+        // Method to get a publisher by its ID
+        public Publisher GetPublisherById(int publisherId)
+        {
+            var _publisher = _context.Publishers.Where(n => n.Id == publisherId).Select(publisher => new Publisher()
+            {
+                Id = publisher.Id,
+                Name = publisher.Name
+                //Books = publisher.
+            }).FirstOrDefault();
+            return _publisher;
         }
 
         // Method to get a publisher, its published books and a list of authors.
@@ -38,7 +53,7 @@ namespace my_books.Data.Services
                     BookAuthors = n.Books.Select(n => new BookAuthorVM()
                     {
                         BookName = n.Title,
-                        BookAuthors = n.Book_Authors.Select(n => n.Author.FullName).ToList()
+                        Authors = n.Book_Authors.Select(n => n.Author.FullName).ToList()
                     }).ToList()
                 }).FirstOrDefault();
             return _publisherData; 

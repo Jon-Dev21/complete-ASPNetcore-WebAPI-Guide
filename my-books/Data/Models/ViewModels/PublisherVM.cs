@@ -9,6 +9,8 @@ namespace my_books.Data.Models.ViewModels
     {
         // Author Full Name
         public string Name { get; set; }
+        // Author List of Books
+        //public List<BookNameVM> PublishedBooks { get; set; }
     }
 
     // For an Id provided, we'll get all the books that this publisher has published as well as a list of authors
@@ -23,6 +25,11 @@ namespace my_books.Data.Models.ViewModels
     public class BookAuthorVM
     {
         public string BookName { get; set; }
-        public List<string> BookAuthors { get; set; }
+        public List<string> Authors { get; set; }
+    }
+
+    public class BookNameVM
+    {
+        public string PublishedBooks { get; set; }
     }
 }

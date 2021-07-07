@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using my_books.ActionResults;
 using my_books.Data.Models.ViewModels;
 using my_books.Data.Services;
 using System;
@@ -28,7 +29,51 @@ namespace my_books.Controllers
             return Ok();
         }
 
+        // Http Get request endpoint (get publisher by ID)
+        // Changed return type from IActionResult to Publisher
+        [HttpGet("get-publisher-by-id/{id}")]
+        public IActionResult GetPublisherById(int id)
+        {
+            var _response = _publishersService.GetPublisherById(id);
+
+            if(_response != null)
+            {
+                //var _responseObject = new CustomActionResultVM()
+                //{
+                //    Publisher = _response
+                //};
+
+                //return new CustomActionResult(_responseObject);
+                return Ok(_response);
+            } else
+            {
+                //var _responseObject = new CustomActionResultVM()
+                //{
+                //    Exception = new Exception("This is coming from publishers controller")
+                //};
+
+                //return new CustomActionResult(_responseObject);
+                return NotFound();
+            }
+        }
+
         // Http Get request endpoint
+        // Gets all publishers
+        [HttpGet("get-all-publishers")]
+        public IActionResult GetAllPublishers()
+        {
+            try
+            {
+                var _result = _publishersService.GetAllPublishers();
+                return Ok(_result);
+            } catch
+            {
+                return BadRequest("Unable to load publishers");
+            }
+        }
+
+
+        // Http Get request endpoint (Get publisher books with authors)
         [HttpGet("get-publisher-books-with-authors/{id}")]
         public IActionResult GetPublisherData(int id)
         {
