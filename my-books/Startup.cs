@@ -49,7 +49,12 @@ namespace my_books
 
             // Adding AspNetCore MVC Versioning package
             // This method is used for API versioning
-            services.AddApiVersioning();
+            services.AddApiVersioning(config =>
+            {
+                // Assigning default API version for when it is not specified
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+            });
 
             services.AddSwaggerGen(c =>
             {
