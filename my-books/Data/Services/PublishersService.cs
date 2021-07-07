@@ -17,7 +17,31 @@ namespace my_books.Data.Services
         }
 
         // Method to get all publishers in the database
-        public List<Publisher> GetAllPublishers() => _context.Publishers.ToList();
+        // Before adding sort parameter: public List<Publisher> GetAllPublishers() => _context.Publishers.ToList();
+        public List<Publisher> GetAllPublishers(string sortBy, string searchString)
+        {
+            // Sort ascending by default
+            var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                switch (sortBy)
+                {
+                    // sort descending
+                    case "name_desc":
+                        allPublishers = allPublishers.OrderByDescending(n => n.Name).ToList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            // If a search string is passed, query for that string
+            if (!string.IsNullOrEmpty(searchString))
+            {// StringComparison.CurrentCultureIgnoreCase is used to ignore lower & uppercase
+                allPublishers = allPublishers.Where(n => n.Name.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+            return allPublishers;
+        }
 
         // Method to add data to the database
         public void AddPublisher(PublisherVM publisher)
@@ -31,16 +55,7 @@ namespace my_books.Data.Services
         }
 
         // Method to get a publisher by its ID
-        public Publisher GetPublisherById(int publisherId)
-        {
-            var _publisher = _context.Publishers.Where(n => n.Id == publisherId).Select(publisher => new Publisher()
-            {
-                Id = publisher.Id,
-                Name = publisher.Name
-                //Books = publisher.
-            }).FirstOrDefault();
-            return _publisher;
-        }
+        public Publisher GetPublisherById(int publisherId) => _context.Publishers.FirstOrDefault(n => n.Id == publisherId);
 
         // Method to get a publisher, its published books and a list of authors.
         // For each book, a list of authors is returned.
