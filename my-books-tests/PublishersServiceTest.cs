@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using my_books.Data;
 using my_books.Data.Models;
+using my_books.Data.Services;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace my_books_tests
 {
@@ -17,6 +19,9 @@ namespace my_books_tests
         // Creating App Db context reference
         AppDbContext context;
 
+        // Publishers service propery
+        PublishersService publishersService;
+
         // Setup Decorator
         // OneTimeSetUp is used to set up database One time.
         [OneTimeSetUp]
@@ -28,7 +33,65 @@ namespace my_books_tests
 
             // After the database is created, seed the database.
             SeedDatabase();
+
+            // Adding publishers service
+            publishersService = new PublishersService(context); 
         }
+
+        // We can set the Test order of execution by adding Order(#) to the [Test] decoration as shown below
+        
+        // Test method for testing GetAllPublishers service method without any parameters.
+        [Test, Order(1)]
+        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithNoPageNumber()
+        {
+            // Will use publishers service here.
+            var result = publishersService.GetAllPublishers("", "", null);
+
+
+            // Verify that there are 3 publishers
+            Assert.That(result.Count, Is.EqualTo(5));
+            // Assert.AreEqual(result.Count, 3); This does the same as the method above
+        }
+
+        // Test method for testing GetAllPublishers service method with only search string parameter.
+        [Test, Order(3)]
+        public void GetAllPublishers_WithNoSortBy_WithSearchString_WithNoPageNumber()
+        {
+            // Will use publishers service here.
+            var result = publishersService.GetAllPublishers("", "3", null);
+
+
+            // Verify that there are 3 publishers
+            Assert.That(result.Count, Is.EqualTo(1));   // Check if result count == 1
+            Assert.That(result.FirstOrDefault().Name, Is.EqualTo("Publisher 3")); // Check if returned result name is "Publisher 3"
+        }
+
+        // Test method for testing GetAllPublishers service method with only SortBy parameter.
+        [Test, Order(2)]
+        public void GetAllPublishers_WithSortBy_WithNoSearchString_WithNoPageNumber()
+        {
+            // Will use publishers service here.
+            var result = publishersService.GetAllPublishers("name_desc", "", null);
+
+            // Verify that there are 3 publishers
+            Assert.That(result.Count, Is.EqualTo(5));   // Check if result count == 5
+            Assert.That(result.FirstOrDefault().Name, Is.EqualTo("Publisher 6")); // Check if returned result name is "Publisher 6" since results are returned descending
+        }
+
+        // Test method for testing GetAllPublishers service method with only page number parameter.
+        [Test, Order(4)]
+        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithPageNumber()
+        {
+            // Will use publishers service here.
+            var result = publishersService.GetAllPublishers("", "", 2);
+
+
+            // Verify that there are 3 publishers
+            Assert.That(result.Count, Is.EqualTo(1));
+            
+        }
+
+
 
         // At the end, we want to destroy the database. 
         // When tests end, this method executes.
@@ -38,7 +101,8 @@ namespace my_books_tests
             context.Database.EnsureDeleted(); 
         }
 
-        // This function will have some code to unit test the publishers service methods 
+        // This function will have some code to unit test the publishers service methods.
+        // It creates some test data for the database in order to test the API.
         private void SeedDatabase()
         {
             var publishers = new List<Publisher>
@@ -55,19 +119,19 @@ namespace my_books_tests
                     new Publisher() {
                         Id = 3,
                         Name = "Publisher 3"
-                    }//,
-                    //new Publisher() {
-                    //    Id = 4,
-                    //    Name = "Publisher 4"
-                    //},
-                    //new Publisher() {
-                    //    Id = 5,
-                    //    Name = "Publisher 5"
-                    //},
-                    //new Publisher() {
-                    //    Id = 6,
-                    //    Name = "Publisher 6"
-                    //},
+                    },
+                    new Publisher() {
+                        Id = 4,
+                        Name = "Publisher 4"
+                    },
+                    new Publisher() {
+                        Id = 5,
+                        Name = "Publisher 5"
+                    },
+                    new Publisher() {
+                        Id = 6,
+                        Name = "Publisher 6"
+                    },
             };
             context.Publishers.AddRange(publishers); // Adding Publishers
 

@@ -43,7 +43,7 @@ namespace my_books.Data.Services
             }
 
             // Paging
-            int pageSize = 5;  // Will display 5 results per page.
+            int pageSize = 5;  // Will display 5 publishers per page.
             allPublishers = PaginatedList<Publisher>.Create(allPublishers.AsQueryable(), pageNumber ?? 1, pageSize);
 
             return allPublishers;
