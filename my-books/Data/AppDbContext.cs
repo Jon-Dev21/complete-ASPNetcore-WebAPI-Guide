@@ -27,6 +27,8 @@ namespace my_books.Data
                 .HasOne(a => a.Author)
                 .WithMany(ba => ba.Book_Authors)
                 .HasForeignKey(ai => ai.AuthorId);
+
+            modelBuilder.Entity<Log>().HasKey(key => key.Id);
         }
 
         // Define table names for my C# Class Models
@@ -34,5 +36,6 @@ namespace my_books.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book_Author> Books_Authors { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Log> Logs { get; set; }    // Adding DB Set for logs model
     }
 }
