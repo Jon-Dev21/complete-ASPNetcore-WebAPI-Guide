@@ -20,3 +20,4 @@ System.Exception: This is an exception thrown from GetAllPublishers()
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
 07/08/2021 16:55:27 -04:00 [Error] - Message: {"StatusCode":500,"Message":"This is an exception thrown from GetAllPublishers()","Path":"/api/publishers/get-all-publishers"}
 07/08/2021 17:17:16 -04:00 [Information] - Message: This is just a log from GetAllPublishers
+07/08/2021 17:19:24 -04:00 [Information] - Message: This is just a log from GetAllPublishers
