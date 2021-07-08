@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Hlc0EL0PlvVv8cZzsml4+19fNsWGunrDQR42whhKsUA3gCHNZ0idYyHGWLbJLdQbNLjhJAnJcxk6gZmY+it3xw==",
+  "dgSpecHash": "znZ/9vn4qQTYkEDVwRip0m5RVKsAAhv3NnJkl1mh6E0wnHJMlMcIXgmVnlCZ6cVvww/mVOSBxtC/fMZ1BXdKvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Calculo\\Desktop\\myCareer\\Udemy Lessons\\The Complete Guide to .NET Core Web API\\my-books\\my-books\\my-books.csproj",
   "expectedPackageFiles": [
@@ -76,10 +76,10 @@
     "C:\\Users\\Calculo\\.nuget\\packages\\serilog.sinks.file\\4.1.0\\serilog.sinks.file.4.1.0.nupkg.sha512",
     "C:\\Users\\Calculo\\.nuget\\packages\\serilog.sinks.mssqlserver\\5.6.0\\serilog.sinks.mssqlserver.5.6.0.nupkg.sha512",
     "C:\\Users\\Calculo\\.nuget\\packages\\serilog.sinks.periodicbatching\\2.3.0\\serilog.sinks.periodicbatching.2.3.0.nupkg.sha512",
-    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
-    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
-    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
+    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.1.4\\swashbuckle.aspnetcore.6.1.4.nupkg.sha512",
+    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.4\\swashbuckle.aspnetcore.swagger.6.1.4.nupkg.sha512",
+    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.1.4\\swashbuckle.aspnetcore.swaggergen.6.1.4.nupkg.sha512",
+    "C:\\Users\\Calculo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.1.4\\swashbuckle.aspnetcore.swaggerui.6.1.4.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

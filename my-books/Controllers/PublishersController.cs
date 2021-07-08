@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using my_books.ActionResults;
 using my_books.Data.Models.ViewModels;
 using my_books.Data.Services;
@@ -16,8 +17,11 @@ namespace my_books.Controllers
     {
         // Creating Database Endpoint for authors
         private PublishersService _publishersService;
-        public PublishersController(PublishersService publishersService)
+        private readonly ILogger<PublishersController> _logger; // Injecting logger
+
+        public PublishersController(PublishersService publishersService, ILogger<PublishersController> logger)
         {
+            _logger = logger;
             _publishersService = publishersService;
         }
 
@@ -65,6 +69,8 @@ namespace my_books.Controllers
             // If sortBy = "name_desc", the publishers will return in descending order by name
             try
             {
+                // Logging some data.
+                _logger.LogInformation("This is just a log from GetAllPublishers");
                 var _result = _publishersService.GetAllPublishers(sortBy, searchString, pageNumber);
                 return Ok(_result);
             } catch

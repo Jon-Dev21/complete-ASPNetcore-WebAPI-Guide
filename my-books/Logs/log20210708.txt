@@ -1,0 +1,2 @@
+07/08/2021 15:38:15 -04:00 [] - Message: This is just a log from GetAllPublishers
+07/08/2021 15:54:39 -04:00 [Information] - Message: This is just a log from GetAllPublishers

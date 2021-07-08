@@ -16,8 +16,20 @@ namespace my_books
         {
             try
             {
-                // Creating Logger for serilog
-                Log.Logger = new LoggerConfiguration().CreateLogger();
+                // Creating configuration builder. read from AppSettings.json logger section
+                var configuration = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+                // CREATING LOGGER FOR SERILOG
+                Log.Logger = new LoggerConfiguration()
+                    .ReadFrom.Configuration(configuration)
+                    .CreateLogger();
+
+                // Old logger before configuring appsettings.json
+                //Log.Logger = new LoggerConfiguration()
+                //    .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day) // To write log to file. (rollingInterval: RollingInterval.Day means that a log will be created per day)
+                //    .CreateLogger();
 
                 CreateHostBuilder(args).Build().Run();
             } 
