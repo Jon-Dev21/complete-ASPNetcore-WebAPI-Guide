@@ -91,9 +91,9 @@ namespace my_books_tests
             
         }
 
-        // Unit test challenge
+        // Unit test challenge: Test the publishersService.GetPublisherById method
         [Test, Order(5)]
-        public void GetPublishersById_Test()
+        public void GetPublishersById_WithResponse_Test()
         {
             // Will use publishers service here.
             var result = publishersService.GetPublisherById(1);
@@ -104,6 +104,16 @@ namespace my_books_tests
             Assert.That(result.Name, Is.EqualTo("Publisher 1"));
             // Assert.AreEqual(result.Count, 3); This does the same as the method above
         }
+
+        [Test, Order(6)]
+        public void GetPublishersById_WithoutResponse_Test()
+        {
+            // Will use publishers service here.
+            var result = publishersService.GetPublisherById(99);
+
+            Assert.That(result, Is.Null);
+        }
+        // ------------------ Unit test challenge End ------------------
 
 
         // At the end, we want to destroy the database. 
