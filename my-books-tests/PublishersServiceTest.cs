@@ -42,7 +42,7 @@ namespace my_books_tests
         
         // Test method for testing GetAllPublishers service method without any parameters.
         [Test, Order(1)]
-        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithNoPageNumber()
+        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithNoPageNumber_Test()
         {
             // Will use publishers service here.
             var result = publishersService.GetAllPublishers("", "", null);
@@ -55,7 +55,7 @@ namespace my_books_tests
 
         // Test method for testing GetAllPublishers service method with only search string parameter.
         [Test, Order(3)]
-        public void GetAllPublishers_WithNoSortBy_WithSearchString_WithNoPageNumber()
+        public void GetAllPublishers_WithNoSortBy_WithSearchString_WithNoPageNumber_Test()
         {
             // Will use publishers service here.
             var result = publishersService.GetAllPublishers("", "3", null);
@@ -68,7 +68,7 @@ namespace my_books_tests
 
         // Test method for testing GetAllPublishers service method with only SortBy parameter.
         [Test, Order(2)]
-        public void GetAllPublishers_WithSortBy_WithNoSearchString_WithNoPageNumber()
+        public void GetAllPublishers_WithSortBy_WithNoSearchString_WithNoPageNumber_Test()
         {
             // Will use publishers service here.
             var result = publishersService.GetAllPublishers("name_desc", "", null);
@@ -80,7 +80,7 @@ namespace my_books_tests
 
         // Test method for testing GetAllPublishers service method with only page number parameter.
         [Test, Order(4)]
-        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithPageNumber()
+        public void GetAllPublishers_WithNoSortBy_WithNoSearchString_WithPageNumber_Test()
         {
             // Will use publishers service here.
             var result = publishersService.GetAllPublishers("", "", 2);
@@ -91,6 +91,19 @@ namespace my_books_tests
             
         }
 
+        // Unit test challenge
+        [Test, Order(5)]
+        public void GetPublishersById_Test()
+        {
+            // Will use publishers service here.
+            var result = publishersService.GetPublisherById(1);
+
+
+            // Verify that there are 3 publishers
+            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.Name, Is.EqualTo("Publisher 1"));
+            // Assert.AreEqual(result.Count, 3); This does the same as the method above
+        }
 
 
         // At the end, we want to destroy the database. 
