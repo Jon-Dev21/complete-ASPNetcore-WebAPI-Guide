@@ -66,6 +66,8 @@ namespace my_books.Controllers
         [HttpGet("get-all-publishers")]
         public IActionResult GetAllPublishers(string sortBy, string searchString, int pageNumber)
         {
+            // Throwing exception to test logging
+            // throw new Exception("This is an exception thrown from GetAllPublishers()");
             // If sortBy = "name_desc", the publishers will return in descending order by name
             try
             {
