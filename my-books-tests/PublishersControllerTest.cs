@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using my_books.Controllers;
 using my_books.Data;
 using my_books.Data.Models;
+using my_books.Data.Models.ViewModels;
 using my_books.Data.Services;
 using NUnit.Framework;
 using System;
@@ -115,28 +116,26 @@ namespace my_books_tests
             Assert.That(actionResult, Is.TypeOf<NotFoundResult>());
         }
 
-        //[Test, Order(2)]
-        //public void HTTPGet_GetAllPublishers_WithSortBy_WithNoSearchString_WithNoPageNumber_ReturnOk_Test()
-        //{
+        // Test method for testing GetPublisherById service method expecting a NotFoundActionResult
+        [Test, Order(4)]
+        public void HTTPPost_AddPublisher_ReturnsCreated_Test()
+        {
+            IActionResult actionResult = publishersController.AddPublisher(new PublisherVM
+            {
+                Name = "Publisher 4"
+            });
+            Assert.That(actionResult, Is.TypeOf<CreatedResult>());
+        }
 
-        //}
-
-        //[Test, Order(3)]
-        //public void HTTPGet_GetAllPublishers_WithNoSortBy_WithSearchString_WithNoPageNumber_ReturnOk_Test()
-        //{
-
-        //}
-
-        //[Test, Order(4)]
-        //public void HTTPGet_GetAllPublishers_WithNoSortBy_WithNoSearchString_WithPageNumber_ReturnOk_Test()
-        //{
-
-        //}
-
-
-
-
-
+        [Test, Order(5)]
+        public void HTTPPost_AddPublisher_ReturnsBadRequest_Test()
+        {
+            IActionResult actionResult = publishersController.AddPublisher(new PublisherVM
+            {
+                Name = "4Publisher 4"
+            });
+            Assert.That(actionResult, Is.TypeOf<BadRequestObjectResult>());
+        }
 
         // At the end, we want to destroy the database. 
         // When tests end, this method executes.

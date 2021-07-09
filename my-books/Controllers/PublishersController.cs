@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using my_books.ActionResults;
 using my_books.Data.Models.ViewModels;
 using my_books.Data.Services;
+using my_books.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,19 @@ namespace my_books.Controllers
         [HttpPost("add-publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
         {
-            _publishersService.AddPublisher(publisher);
-            return Ok();
+            try
+            {
+                var newPublisher = _publishersService.AddPublisher(publisher);
+                return Created(nameof(AddPublisher), newPublisher);
+            } 
+            catch (PublisherNameException ex)
+            {
+                return BadRequest($"{ex.Message}, Publisher name: {ex.PublisherName}");
+            } 
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // Http Get request endpoint (get publisher by ID)
