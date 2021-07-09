@@ -116,7 +116,7 @@ namespace my_books_tests
             Assert.That(actionResult, Is.TypeOf<NotFoundResult>());
         }
 
-        // Test method for testing GetPublisherById service method expecting a NotFoundActionResult
+        // Test method for testing AddPublisher service method expecting a Created Object
         [Test, Order(4)]
         public void HTTPPost_AddPublisher_ReturnsCreated_Test()
         {
@@ -127,6 +127,7 @@ namespace my_books_tests
             Assert.That(actionResult, Is.TypeOf<CreatedResult>());
         }
 
+        // Test method for testing AddPublisher service method expecting a Bad Request Object
         [Test, Order(5)]
         public void HTTPPost_AddPublisher_ReturnsBadRequest_Test()
         {
@@ -134,6 +135,22 @@ namespace my_books_tests
             {
                 Name = "4Publisher 4"
             });
+            Assert.That(actionResult, Is.TypeOf<BadRequestObjectResult>());
+        }
+
+        // Test method for testing DeletePublisherById service method expecting an Ok Request Object
+        [Test, Order(6)]
+        public void HTTPPost_DeletePublisherById_OkRequest_Test()
+        {
+            IActionResult actionResult = publishersController.DeletePublisherById(6);
+            Assert.That(actionResult, Is.TypeOf<OkResult>());
+        }
+
+        // Test method for testing DeletePublisherById service method expecting a Bad Request Object
+        [Test, Order(7)]
+        public void HTTPPost_DeletePublisherById_ReturnsBadRequest_Test()
+        {
+            IActionResult actionResult = publishersController.DeletePublisherById(600);
             Assert.That(actionResult, Is.TypeOf<BadRequestObjectResult>());
         }
 
