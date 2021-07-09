@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using my_books.Data;
 using my_books.Data.Models;
+using my_books.Data.Models.ViewModels;
 using my_books.Data.Services;
+using my_books.Exceptions;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -115,6 +117,62 @@ namespace my_books_tests
         }
         // ------------------ Unit test challenge End ------------------
 
+        // Test method for testing AddPublishers service method with a thrown exception
+        [Test, Order(7)]
+        public void AddPublisher_WithException_Test()
+        {
+            var newPublisher = new PublisherVM()
+            {
+                Name = "123 With Exception"
+            };
+
+            // Assert that this method throws an exception with message "Name starts with a number"
+            Assert.That(() => publishersService.AddPublisher(newPublisher), 
+                Throws.Exception.TypeOf<PublisherNameException>().With.Message.EqualTo("Name starts with a number"));
+        }
+
+        // Test method for testing AddPublishers service method without a thrown exception
+        [Test, Order(8)]
+        public void AddPublisher_WithoutException_Test()
+        {
+            var newPublisher = new PublisherVM()
+            {
+                Name = "Without Exception Publisher"
+            };
+
+            var result = publishersService.AddPublisher(newPublisher);
+
+            // Assert that result is not null
+            Assert.That(result, Is.Not.Null);
+
+            // Assert that result name starts with "Without"
+            Assert.That(result.Name, Does.StartWith("Without"));
+
+            // Assert that Id is not null
+            Assert.That(result.Id, Is.Not.Null);
+        }
+
+        // Test method for testing GetPublisherData service method
+        [Test, Order(9)]
+        public void GetPublisherData_Test()
+        {
+            var result = publishersService.GetPublisherData(1);
+
+            // Assert that the result name is equal to "Publisher 1
+            Assert.That(result.Name, Is.EqualTo("Publisher 1"));
+
+            // Assert that the BookAuthors is not empty
+            Assert.That(result.BookAuthors, Is.Not.Empty);
+
+            // Assert that the BookAuthors result count is greater than 0
+            Assert.That(result.BookAuthors.Count, Is.GreaterThan(0));
+
+            // Getting first book name from BookAuthors
+            var firstBookName = result.BookAuthors.OrderBy(n => n.BookName).FirstOrDefault().BookName;
+            
+            // Assert that firstBookName is equal to "Book 1 Title"
+            Assert.That(firstBookName, Is.EqualTo("Book 1 Title"));
+        }
 
         // At the end, we want to destroy the database. 
         // When tests end, this method executes.

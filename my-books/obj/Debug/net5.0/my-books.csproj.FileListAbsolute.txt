@@ -74,3 +74,4 @@ C:\Users\Calculo\Desktop\myCareer\Udemy Lessons\The Complete Guide to .NET Core 
 C:\Users\Calculo\Desktop\myCareer\Udemy Lessons\The Complete Guide to .NET Core Web API\my-books\my-books\bin\Debug\net5.0\Serilog.Sinks.File.dll
 C:\Users\Calculo\Desktop\myCareer\Udemy Lessons\The Complete Guide to .NET Core Web API\my-books\my-books\bin\Debug\net5.0\Serilog.Sinks.MSSqlServer.dll
 C:\Users\Calculo\Desktop\myCareer\Udemy Lessons\The Complete Guide to .NET Core Web API\my-books\my-books\bin\Debug\net5.0\Serilog.Sinks.PeriodicBatching.dll
+C:\Users\Calculo\Desktop\myCareer\Udemy Lessons\The Complete Guide to .NET Core Web API\my-books\my-books\obj\Debug\net5.0\my-books.csproj.AssemblyReference.cache

@@ -1,9 +1,11 @@
 ﻿using my_books.Data.Models;
 using my_books.Data.Models.ViewModels;
 using my_books.Data.Paging;
+using my_books.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace my_books.Data.Services
@@ -50,14 +52,19 @@ namespace my_books.Data.Services
         }
 
         // Method to add data to the database
-        public void AddPublisher(PublisherVM publisher)
+        public Publisher AddPublisher(PublisherVM publisher)
         {
+            // Check if the added publisher name starts with a number
+            if (StringStartsWithNumber(publisher.Name)) throw new PublisherNameException("Name starts with a number", publisher.Name);
+
             var _publisher = new Publisher()
             {
                 Name = publisher.Name
             };
             _context.Publishers.Add(_publisher);
             _context.SaveChanges();
+
+            return _publisher;
         }
 
         // Method to get a publisher by its ID
@@ -90,5 +97,9 @@ namespace my_books.Data.Services
                 _context.SaveChanges();
             }
         }
+
+        // Checks if a string starts with a number
+        private bool StringStartsWithNumber(string name) => (Regex.IsMatch(name, @"^\d"));
+
     }
 }
