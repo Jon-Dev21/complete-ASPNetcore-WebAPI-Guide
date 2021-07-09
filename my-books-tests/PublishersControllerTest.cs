@@ -50,6 +50,7 @@ namespace my_books_tests
 
         // CONTROLLER TESTING METHODS
 
+        // Test method for testing GetAllPublishers service method with all three parameters
         [Test, Order(1)]
         public void HTTPGet_GetAllPublishers_WithSortBy_WithSearchString_WithPageNumber_ReturnOk_Test()
         {
@@ -90,7 +91,29 @@ namespace my_books_tests
             Assert.That(actionResultDataSecondPage.Count, Is.EqualTo(1));
         }
 
+        // Test method for testing GetPublisherById service method expecting an OkActionResult
+        [Test, Order(2)]
+        public void HTTPGet_GetPublisherById_OkActionResult_Test()
+        {
+            IActionResult actionResult = publishersController.GetPublisherById(1);
 
+            Assert.That(actionResult, Is.TypeOf<OkObjectResult>());
+            Assert.That(actionResult, Is.Not.Null);
+
+            // Getting data from action result
+            var publisherData = (actionResult as OkObjectResult).Value as Publisher;
+            Assert.That(publisherData.Id, Is.EqualTo(1));
+            Assert.That(publisherData.Name, Is.EqualTo("publisher 1").IgnoreCase);
+        }
+
+        // Test method for testing GetPublisherById service method expecting a NotFoundActionResult
+        [Test, Order(3)]
+        public void HTTPGet_GetPublisherById_NotFoundActionResult_Test()
+        {
+            IActionResult actionResult = publishersController.GetPublisherById(100);
+
+            Assert.That(actionResult, Is.TypeOf<NotFoundResult>());
+        }
 
         //[Test, Order(2)]
         //public void HTTPGet_GetAllPublishers_WithSortBy_WithNoSearchString_WithNoPageNumber_ReturnOk_Test()
